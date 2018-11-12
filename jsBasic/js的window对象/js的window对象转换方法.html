@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			
+			var str = "1";
+			var num = parseInt(str);
+			alert(typeof num);
+			
+		//程序在页面加载完成后,在执行
+		//事件 onload,事件源是浏览器的窗口  window对象
+		//事件需要JS的函数进行处理
+		//页面加载完毕后,自动调用匿名函数
+		window.onload =	function(){
+			var div = document.getElementById("div");
+			alert(div);
+		}
+		</script>
+	</head>
+	<body>
+		<div id="div">我是一个小可爱</div>
+	</body>
+</html>
