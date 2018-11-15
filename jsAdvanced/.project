@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>jsBasic</name>
+	<name>jsAdvanced</name>
 	<comment>Create By HBuilder</comment>
 	<projects>
 	</projects>
@@ -16,7 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1542023954386</id>
+			<id>1542245326302</id>
 			<name></name>
 			<type>10</type>
 			<matcher>

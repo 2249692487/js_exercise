@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表格隔行变色&全选全不选</title>
+		<script type="text/javascript">
+			 /*
+				 * 实现全选和全不选
+				 * 
+				 * 最上面,总选框
+				 * 其他的,分选框
+				 * 
+				 * checkbox 复选框,属性 checked="checked"
+				 * 所有的分选框的属性checked,属性值,跟随总选框的checked属性值
+				 * 
+				 */
+				function selectAll(obj){
+//					getElementsByClassName("class属性值")通过class属性值获取,获取多个对象,返回的是数组
+					var checkBox = document.getElementsByClassName("itemSelect");
+					for(var i = 0; i < checkBox.length; i++){
+						//取出数组中的每个复选框
+						//设置复选框的属性checked,跟随总选框
+						checkBox[i].checked = obj.checked;
+					}
+				}
+				/*
+			     * 实现表格的隔行变色
+			     * 实现步骤:
+			     *   1  获取所有的行元素 tr  标签名获取
+			     *   2 遍历数组,取出每个tr
+			     *     设置奇数行和偶数行的背景色
+			     *     遍历变量%2
+			     *     修改背景色
+			     * 
+			     * 追加需求: 鼠标悬停在某一行上,这个行背景色变化
+			     */
+			var color;
+			    window.onload = function(){
+			    	var trs = document.getElementsByTagName("tr");
+			    	for(var i = 2;i < trs.length;i++){
+			    		if(i%2==0){
+			    		   trs[i].bgColor="#FFEBCD";
+			    		}else{
+			    		   trs[i].bgColor="pink";
+			    		}
+			    		
+			    		//每个行元素,绑定鼠标悬停事件
+							trs[i].onmouseover = function(){
+								/*
+						    	 * 页面加载完成后,for循环已经结束了
+						    	 * 改变事件什么时候执行,改变文本内容,事件才出现,函数才会调用
+						    	 * 循环已经结束了,变量i死亡
+						    	 * 
+						    	 * trs[i]代表的是每个input标签对象
+						    	 * 可以表示当前对象 this
+						    	 */
+								//记录这个行背景色
+								color = this.bgColor;
+				   	  			//设置这行的背景色
+				   	  			this.bgColor = "white";
+							}
+			   	  			//每个行元素,绑定鼠标离开事件
+							trs[i].onmouseout = function(){
+								//还原背景色,行原来什么背景色,还原回去
+								this.bgColor=color;
+							}
+			    	 }
+			    }    
+		</script>
+	</head>
+	<body>
+		<table id="tab1" border="1" width="800" align="center" >
+			<tr>
+				<td colspan="5"><input type="button" value="删除"></td>
+			</tr>
+			<tr style="background-color: #999999;">
+				<!--事件调用函数,传递参数 this ,传递的是input标签对象-->
+				<th><input type="checkbox" onclick="selectAll(this)"></th>
+				<th>分类ID</th>
+				<th>分类名称</th>
+				<th>分类描述</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>1</td>
+				<td>手机数码</td>
+				<td>手机数码类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>2</td>
+				<td>电脑办公</td>
+				<td>电脑办公类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>3</td>
+				<td>鞋靴箱包</td>
+				<td>鞋靴箱包类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>4</td>
+				<td>家居饰品</td>
+				<td>家居饰品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>5</td>
+				<td>牛奶制品</td>
+				<td>牛奶制品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr><tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>6</td>
+				<td>大豆制品</td>
+				<td>大豆制品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>7</td>
+				<td>海参制品</td>
+				<td>海参制品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>8</td>
+				<td>羊绒制品</td>
+				<td>羊绒制品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>9</td>
+				<td>海洋产品</td>
+				<td>海洋产品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>10</td>
+				<td>奢侈用品</td>
+				<td>奢侈用品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>7</td>
+				<td>海参制品</td>
+				<td>海参制品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>8</td>
+				<td>羊绒制品</td>
+				<td>羊绒制品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>9</td>
+				<td>海洋产品</td>
+				<td>海洋产品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>10</td>
+				<td>奢侈用品</td>
+				<td>奢侈用品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>7</td>
+				<td>海参制品</td>
+				<td>海参制品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>8</td>
+				<td>羊绒制品</td>
+				<td>羊绒制品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>9</td>
+				<td>海洋产品</td>
+				<td>海洋产品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="itemSelect"></td>
+				<td>10</td>
+				<td>奢侈用品</td>
+				<td>奢侈用品类商品</td>
+				<td><a href="">修改</a>|<a href="">删除</a></td>
+			</tr>
+		</table>
+	</body>
+</html>
