@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<title>表格隔行变色&全选全不选</title>
 		<script type="text/javascript">
-				 /*
+				/*
 				 * 实现全选和全不选
 				 * 
 				 * 最上面,总选框
@@ -14,15 +14,19 @@
 				 * 所有的分选框的属性checked,属性值,跟随总选框的checked属性值
 				 * 
 				 */
-				function selectAll(obj){
-					//getElementsByClassName("class属性值")通过class属性值获取,获取多个对象,返回的是数组
-					var checkBox = document.getElementsByClassName("itemSelect");
-					for(var i = 0; i < checkBox.length; i++){
-						//取出数组中的每个复选框
-						//设置复选框的属性checked,跟随总选框
-						checkBox[i].checked = obj.checked;
-					}
-				}
+// 				function selectAll(obj){
+// 					//getElementsByClassName("class属性值")通过class属性值获取,获取多个对象,返回的是数组
+// 					var checkBox = document.getElementsByClassName("itemSelect");
+// 					for(var i = 0; i < checkBox.length; i++){
+// 						//取出数组中的每个复选框
+// 						//设置复选框的属性checked,跟随总选框
+// 						checkBox[i].checked = obj.checked;
+// 					}
+// 				}
+				
+				
+				
+			
 				/*
 			     * 实现表格的隔行变色
 			     * 实现步骤:
@@ -34,7 +38,7 @@
 			     * 
 			     * 追加需求: 鼠标悬停在某一行上,这个行背景色变化
 			     */
-			var color;
+					var color;
 			    window.onload = function(){
 			    	var trs = document.getElementsByTagName("tr");
 			    	for(var i = 2;i < trs.length;i++){
@@ -54,13 +58,13 @@
 						    	 * trs[i]代表的是每个input标签对象
 						    	 * 可以表示当前对象 this
 						    	 */
-								//记录这个行背景色
-								color = this.bgColor;
-				   	  			//设置这行的背景色
-				   	  			this.bgColor = "white";
+									//记录这个行背景色
+									color = this.bgColor;
+				   	  		//设置这行的背景色
+				   	  		this.bgColor = "white";
 							}
 			   	  			//每个行元素,绑定鼠标离开事件
-							trs[i].onmouseout = function(){
+								trs[i].onmouseout = function(){
 								//还原背景色,行原来什么背景色,还原回去
 								this.bgColor=color;
 							}
@@ -75,7 +79,8 @@
 			</tr>
 			<tr style="background-color: #999999;">
 				<!--事件调用函数,传递参数 this ,传递的是input标签对象-->
-				<th><input type="checkbox" onclick="selectAll(this)"></th>
+				<!-- onclick="selectAll(this)" -->
+				<th><input type="checkbox"   id="selectId"></th>
 				<th>分类ID</th>
 				<th>分类名称</th>
 				<th>分类描述</th>
@@ -209,3 +214,33 @@
 		</table>
 	</body>
 </html>
+				<script type="text/javascript">
+					/*
+						*实现子标签有没选中的，全选就取消
+						* 
+						*/
+					var selectId = document.getElementById("selectId");
+					var itemSelects = document.getElementsByClassName("itemSelect");
+					selectId.onclick = 	function(){
+					
+					var flag = selectId.checked;
+					for(var i = 0;i < itemSelects.length; i++){
+								itemSelects[i].checked = flag;
+							}
+					}
+						
+						
+					for(var i = 0;i <itemSelects.length;i++){
+						itemSelects[i].onclick = function(){
+							var flag2 = true;
+							for(var i = 0; i < itemSelects.length; i++){
+								if(!itemSelects[i].checked){
+									flag2 = false;
+									break;
+								}
+							}
+							selectId.checked = flag2;
+						}
+					}
+					
+				</script>
